@@ -23,7 +23,7 @@ MCS_TEST_DIR="/home/pi/Recieve-Transfer-MCS-Test"
 DRONE_DIR="/home/pi/drone-public"
 
 # --- RX-specific config ---
-WLAN1_IP="192.168.40.21"
+WLAN1_IP="192.168.40.20"
 OTHER_DRONE_URL="http://192.168.50.1/messenger"
 
 echo "============================================"
