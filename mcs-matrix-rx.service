@@ -42,7 +42,7 @@ ExecStartPre=/bin/bash ${MESH_SCRIPT}
 ExecStartPre=/bin/sleep 5
 
 # Step 6: Run the receiver control daemon + drone server
-ExecStart=/bin/bash -c 'java -jar /home/pi/drone-public/deployment/DroneServer-1.0.jar & python3 ${RX_SCRIPT} ${BIND_IP} ${CTRL_PORT} ${IPERF_PORT}'
+ExecStart=/bin/bash -c 'cd /home/pi/drone-public/deployment && java -jar DroneServer-1.0.jar & python3 ${RX_SCRIPT} ${BIND_IP} ${CTRL_PORT} ${IPERF_PORT}'
 
 Restart=on-failure
 RestartSec=5
