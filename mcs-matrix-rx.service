@@ -30,14 +30,17 @@ ExecStartPre=/bin/sleep 20
 # Step 2: Make sure WiFi radio is unblocked
 ExecStartPre=/usr/sbin/rfkill unblock wifi
 
-# Step 3: Patch the BAT_IP in sdmah-mesh.sh and run it
+# Step 3: Wait for wlan0 to be fully ready
+ExecStartPre=/bin/sleep 10
+
+# Step 4: Patch the BAT_IP in sdmah-mesh.sh and run it
 ExecStartPre=/bin/bash -c 'sed -i "s|^BAT_IP=.*|BAT_IP=\"${RX_BAT_IP}\"|" ${MESH_SCRIPT}'
 ExecStartPre=/bin/bash ${MESH_SCRIPT}
 
-# Step 4: Small settle delay for the mesh to form
-ExecStartPre=/bin/sleep 5
+# Step 5: Small settle delay for the mesh to form
+ExecStartPre=/bin/sleep 10
 
-# Step 5: Run the receiver control daemon
+# Step 6: Run the receiver control daemon
 ExecStart=/usr/bin/python3 ${RX_SCRIPT} ${BIND_IP} ${CTRL_PORT} ${IPERF_PORT}
 
 Restart=on-failure
